@@ -33,7 +33,7 @@ class Header extends Component {
       <div className='Header_not-logged-in'>
         <nav>
           <Link to='/login'>Login</Link>
-          {' '}
+          {' - '}
           <Link to='/register'>Sign up</Link>
         </nav>
       </div> 

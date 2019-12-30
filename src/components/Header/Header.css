@@ -1,20 +1,36 @@
 .Header { 
-  height: 40px; 
   display: block; 
   align-items: normal; 
+  text-align: center;
   justify-content: space-between;
+  background-color: black;
+  padding: 10px;
+  /* border: 10px; */
+  height: 60px;
 }
 
 .Header h1 {
   margin: 0;
+  text-align: center;
+  font-size: xl-large;
+  /* padding: 5px; */
 }
 
 .Header h1 a { 
   text-decoration: none;
 }
 
+.Header nav a { 
+  color: black;
+  font-size: larger;
+}
+
+.Header nav{
+  padding-top: 23px;
+}
+
 .Header a{ 
-  color: cadetblue;
+  color: silver;
 }
 
 .Header__not-logged-in {
@@ -25,9 +41,11 @@
 @media screen and (min-width: 450px) {
   .Header {
     align-items: baseline;
+    height: 60px;
   }
   .Header h1 {
-    font-size: 22pt;
+    font-size: xx-large;
+    text-align: center;
   }
 
   .Header__not-logged-in {
@@ -36,5 +54,11 @@
 
   .Header__not-logged-in .Hyph {
     display: initial;
+  }
+}
+
+@media screen and (min-width: 700px){
+  .Header nav {
+    font-size: large;
   }
 }

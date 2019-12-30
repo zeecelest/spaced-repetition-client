@@ -1,0 +1,31 @@
+.description { 
+  text-align: center;
+  padding-top: 20px;
+}
+
+.description a { 
+  text-decoration: none;
+}
+
+.description h2 { 
+  margin: 10px;
+}
+
+.description p { 
+  font-size: larger;
+  padding: 20px;
+  line-height: 1.7;
+  background-color: rgb(13, 103, 109);
+  /* border-radius: 15px; */
+  color: seashell;
+}
+
+@media screen and (min-width: 700px){
+  .description { 
+    font-size: x-large;
+  }
+
+  .description a { 
+    font-size: large;
+  }
+}
