@@ -1,10 +1,40 @@
 import React, { Component } from 'react'
+import WordContext from '../../contexts/WordContext'
+import WordListApiService from '../../services/WordListApiService'
 
-class DashboardRoute extends Component {
+ class DashboardRoute extends Component {
+  static contextType = WordContext
+
+  componentDidMount() {
+    this.context.clearError()
+    WordListApiService.getWords()
+      .then(this.context.setWordList)
+      .catch(this.context.setError)
+  }
+
+  renderWords() {
+    const { wordList } = this.context
+;
+    return wordList.map( word => 
+      <h3>{word.id}: {word}</h3> 
+    )
+  }
+
   render() {
+    const { error } = this.context
     return (
       <section>
-        implement and style me
+        {error 
+          ? <p className='red'>There was an error, try again</p>
+          : this.renderWords()}
+        <h2>
+          Language: French 
+        </h2> 
+        <button className='start' type='submit'>Start Practice!</button> 
+        <h3>Words to practice:</h3>
+        <ol>
+          <li>{this.wordList}</li>
+        </ol>
       </section>
     );
   }
