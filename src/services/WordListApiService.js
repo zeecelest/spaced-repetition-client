@@ -1,13 +1,14 @@
 import config from '../config'
-// import TokenService from '../services/token-service'
+import TokenService from './token-service'
 
 
 const WordListApiService = {
   getWords() {
     return fetch(`${config.API_ENDPOINT}/language`, {
-      // method: "GET",
-      headers: {
-        // 'content-type': 'application/json',
+        headers: {
+          'content-type': 'application/json',
+          'authorization': `Bearer ${TokenService.getAuthToken()}`,
+       
         // Authorization: 'Bearer spaced-repetition-auth-token',
     },
     // body: JSON.stringify()
