@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
  const WordContext = React.createContext({ 
-  word: {},
+  word: [],
   error: null, 
   setError: () => {},
   clearError: () => {},
@@ -14,7 +14,7 @@ export default WordContext
 
 export class WordProvider extends Component {
   state = {
-    word: {},
+    word: [],
     correctCount: null, 
     incorrectCount: null, 
     error: null,

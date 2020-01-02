@@ -28,7 +28,12 @@ export default class App extends Component {
             <p>There was an error! Oh no!</p>
           )}
           <Switch>
-            <PrivateRoute
+          {/* <PrivateRoute
+              exact
+              path={'/dashboard'}
+              component={DashboardRoute}
+            /> */}
+            <PublicOnlyRoute
               exact
               path={'/'}
               component={DashboardRoute}

@@ -3,7 +3,7 @@ import config from '../config'
 
 const WordListApiService = {
   getWords() {
-    return fetch(`${config.API_ENDPOINT}/words`, {
+    return fetch(`${config.API_ENDPOINT}/language`, {
       headers: {
       },
     })

@@ -13,9 +13,11 @@ import WordListApiService from '../../services/WordListApiService'
   }
 
   renderWords() {
-    const { wordList } = this.context
-;
-    return wordList.map( word => 
+    console.log(this.context)
+    const { word = [] } = this.context
+
+; 
+    return word.map( word => 
       <h3>{word.id}: {word}</h3> 
     )
   }
@@ -33,7 +35,7 @@ import WordListApiService from '../../services/WordListApiService'
         <button className='start' type='submit'>Start Practice!</button> 
         <h3>Words to practice:</h3>
         <ol>
-          <li>{this.wordList}</li>
+          <li>{this.word}</li>
         </ol>
       </section>
     );
