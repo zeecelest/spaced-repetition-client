@@ -3,8 +3,8 @@ import TokenService from './token-service'
 
 
 const WordListApiService = {
-  getWords() {
-    return fetch(`${config.API_ENDPOINT}/language`, {
+  getWords(languageId = 1) {
+    return fetch(`${config.API_ENDPOINT}/language/${languageId}`, {
         headers: {
        
         // Authorization: 'Bearer spaced-repetition-auth-token',

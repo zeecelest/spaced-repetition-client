@@ -5,7 +5,7 @@ import React, { Component } from 'react'
   error: null, 
   setError: () => {},
   clearError: () => {},
-  setWord: () => {},
+  setWordList: () => {},
   correctTotal: () => {},
   incorrectTotal: () => {},
 })
@@ -27,9 +27,10 @@ export class WordProvider extends Component {
 
   clearError = () => {
     this.setState({ error: null })
+    console.log('cleared')
   }
 
-  setWord = word => {
+  setWordList = word => {
     this.setState({word})
   }
 
@@ -47,7 +48,7 @@ render() {
     error: this.state.error, 
     setError: this.setError, 
     clearError: this.clearError, 
-    setWord: this.setWord, 
+    setWordList: this.setWordList, 
     correctWord: this.correctWord,
     incorrectWord: this.incorrectWord,
   }
