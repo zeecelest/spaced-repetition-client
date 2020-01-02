@@ -28,16 +28,11 @@ export default class App extends Component {
             <p>There was an error! Oh no!</p>
           )}
           <Switch>
-          <PrivateRoute
+            <PrivateRoute
               exact
               path={'/'}
               component={DashboardRoute}
             />
-            {/* <PublicOnlyRoute
-              exact
-              path={'/'}
-              component={DashboardRoute}
-            /> */}
             <PrivateRoute
               path={'/learn'}
               component={LearningRoute}

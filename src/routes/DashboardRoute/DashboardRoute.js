@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import WordContext from '../../contexts/WordContext'
 import WordListApiService from '../../services/WordListApiService'
+import { Link } from 'react-router-dom'
 
  class DashboardRoute extends Component {
   static contextType = WordContext;
@@ -37,7 +38,7 @@ import WordListApiService from '../../services/WordListApiService'
           ? <p className='red'>There was an error, try again</p>
           : this.renderWords()}
 
-        <button className='start' type='submit'>Start Practice!</button> 
+        <Link to="/learn"><button className='start' type='submit'>Start Practice!</button></Link> 
       </section>
     );
   }
