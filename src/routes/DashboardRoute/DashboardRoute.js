@@ -3,22 +3,25 @@ import WordContext from '../../contexts/WordContext'
 import WordListApiService from '../../services/WordListApiService'
 
  class DashboardRoute extends Component {
-  static contextType = WordContext
+  static contextType = WordContext;
 
   componentDidMount() {
+    console.log(this.context)
     this.context.clearError()
+    // get words needs language id 
     WordListApiService.getWords()
-      .then(this.context.setWordList)
+      // .then(console.log)
+      .then((obj) => this.context.setWordList(obj.words))
       .catch(this.context.setError)
   }
 
   renderWords() {
-    console.log(this.context)
-    const { word = [] } = this.context
+    // console.log(this.context)
+    const { word = [] } = this.context;
+    // console.log(word);
 
-; 
     return word.map( word => 
-      <h3>{word.id}: {word}</h3> 
+      <h3>{word.id}. {word.original} = {word.translation}</h3> 
     )
   }
 
@@ -26,17 +29,15 @@ import WordListApiService from '../../services/WordListApiService'
     const { error } = this.context
     return (
       <section>
-        {error 
-          ? <p className='red'>There was an error, try again</p>
-          : this.renderWords()}
         <h2>
           Language: French 
         </h2> 
-        <button className='start' type='submit'>Start Practice!</button> 
         <h3>Words to practice:</h3>
-        <ol>
-          <li>{this.word}</li>
-        </ol>
+        {error 
+          ? <p className='red'>There was an error, try again</p>
+          : this.renderWords()}
+
+        <button className='start' type='submit'>Start Practice!</button> 
       </section>
     );
   }
