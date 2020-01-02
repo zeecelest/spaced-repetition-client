@@ -6,8 +6,6 @@ const WordListApiService = {
   getWords() {
     return fetch(`${config.API_ENDPOINT}/language`, {
         headers: {
-          'content-type': 'application/json',
-          'authorization': `Bearer ${TokenService.getAuthToken()}`,
        
         // Authorization: 'Bearer spaced-repetition-auth-token',
     },
