@@ -21,8 +21,26 @@ import { Link } from 'react-router-dom'
     const { word = [] } = this.context;
     // console.log(word);
 
-    return word.map( word => 
-      <h3>{word.id}. {word.original} = {word.translation}</h3> 
+    return ( 
+      <ul className="wordlist">
+        {this.context.words.map(word => {
+          return (
+            <li key = { word.id } >
+              <h3> { word.original } = { word.translation } </h3>
+              <div>
+              < span>Correct guesses: { word.correct_count }</span>
+                <span>Incorrect guesses: { word.incorrect_count }</span>
+              </div>
+            </li>
+          )
+        })}
+      </ul>
+      
+      // word.map( word => 
+      // <h3>{word.id}. {word.original} = {word.translation}</h3> 
+      // <div>
+        
+      // </div>
     )
   }
 
