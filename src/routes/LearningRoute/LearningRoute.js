@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import WordContext from '../../contexts/wordContext'
-import { Input, Label } from '../Form/Form'
-import Button from '../Button/Button'
-import config from '../config'
-import TokenService from './token-service'
+import UserContext from '../../contexts/UserContext'
+import { Input, Label } from '../../components/Form/Form'
+import Button from '../../components/Button/Button'
+import config from '../../config'
+import TokenService from '../../services/token-service'
 
 
 
@@ -22,7 +22,7 @@ class LearningRoute extends Component {
     }
   }
 
-  static contextType = WordContext;
+  static contextType = UserContext;
 
   componentDidMount(){
   fetch(`${config.API_ENDPOINT}/language/head`, {
@@ -98,33 +98,49 @@ if (this.state.isCorrect === null){
 
 };
 
-handleInput(e) {
-this.setState({usrInput: e.target.value})
+
+handleInput(event) {
+this.setState({usrInput: event.target.value})
 }
 
   render() {
 
-    const { error } = this.context
 
     return (
-      <section>
-        <h2>Translate the word:</h2>
-        {error 
-          ? <p className='red'>There was an error, try again</p>
-          : this.renderWord()}
-        
-
-        <div> 
-          <Label htmlFor='answer-input'> 
-            Answer
-          </Label> 
-          <Input 
-            id='answer-input'
-            name='answer'
-            required
-          />
-        </div> 
-        <Button type='submit'>Submit Answer</Button>
+      <section className='learn'>
+        <p>Score: {this.state.score}</p>
+        <p>Amount of times you answered correctly: {this.state.correctAns}</p>
+        <p>Amount of times you answered incorrectly:  {this.state.incorrectAns}</p>
+      <div className="result">
+        <h2>{(this.state.isCorrect !== null) ? (this.state.isCorrect) ? 'Correct!'
+            :'Incorrect..'
+            :'Translate the word:'}</h2>
+          <h3>{this.state.current}</h3>
+      </div>
+        {(this.state.isCorrect !== null) ? 
+        <div className='result'>
+          <p>
+            Sorry! {this.state.usrInput} is incorrect! {this.state.answer} is the translation of {this.state.current}
+          </p>
+        </div> : ''}
+        <form className='submit' onSubmit={this.handleSubmit}>
+          {(this.state.isCorrect === null) ? <>
+          <div className='input'> 
+            <Label htmlFor='usrInput'> 
+              What is the translation?:
+            </Label> 
+            <Input 
+              id='answer-input'
+              name='answer'
+              required
+              onChange={(event) => this.handleInput(event)} 
+              value={this.state.usrInput}
+            />
+          </div> 
+          <Button type='submit'>Submit Answer</Button>
+          </> : <Button type='submit'>Next Word!</Button>
+          }
+        </form>
       </section>
     );
   }
