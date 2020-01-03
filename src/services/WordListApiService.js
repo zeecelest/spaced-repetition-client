@@ -2,6 +2,8 @@ import config from '../config'
 import TokenService from './token-service'
 
 
+
+
 const WordListApiService = {
   getWords(languageId = 1) {
     return fetch(`${config.API_ENDPOINT}/language/${languageId}`, {

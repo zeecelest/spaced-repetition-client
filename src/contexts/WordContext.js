@@ -15,7 +15,7 @@ export default WordContext
 export class WordProvider extends Component {
   state = {
     word: [],
-    correctCount: null, 
+    : null, 
     incorrectCount: null, 
     error: null,
   };
