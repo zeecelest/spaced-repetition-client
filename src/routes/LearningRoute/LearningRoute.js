@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import WordContext from '../../contexts/wordContext'
 import { Input, Label } from '../Form/Form'
+import Button from '../Button/Button'
+
 
 class LearningRoute extends Component {
 
@@ -15,12 +17,16 @@ class LearningRoute extends Component {
 
 
   render() {
+
+    const { error } = this.context
+
     return (
       <section>
         <h2>Translate the word:</h2>
         {error 
           ? <p className='red'>There was an error, try again</p>
           : this.renderWord()}
+        
 
         <div> 
           <Label htmlFor='answer-input'> 
