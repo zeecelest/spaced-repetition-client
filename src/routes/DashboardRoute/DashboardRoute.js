@@ -11,13 +11,12 @@ import { Link } from 'react-router-dom'
     this.context.clearError()
     // get words needs language id 
     WordListApiService.getWords()
-      // .then(console.log)
+      // .then(x => console.log(x,'here instead'))
       .then((obj) => this.context.setWordList(obj.words))
       .catch(this.context.setError)
   }
 
   renderWords() {
-    // console.log(this.context)
     const { word = [] } = this.context;
     // console.log(word);
 
@@ -43,6 +42,7 @@ import { Link } from 'react-router-dom'
   }
 
   render() {
+    console.log(this.context,"here")
     const { error } = this.context
     return (
       <section>

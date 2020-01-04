@@ -15,10 +15,11 @@ const WordListApiService = {
     },
     // body: JSON.stringify()
   })
-      .then(res => 
-        (!res.ok)
+      .then(res => {
+        return (!res.ok)
           ? res.json().then(e => Promise.reject(e))
           : res.json()
+      }
       )
   },
 
