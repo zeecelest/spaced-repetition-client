@@ -27,7 +27,6 @@ export class WordProvider extends Component {
 
   clearError = () => {
     this.setState({ error: null })
-    console.log('cleared')
   }
 
   setWordList = word => {

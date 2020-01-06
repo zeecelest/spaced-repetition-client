@@ -17,7 +17,7 @@ class LearningRoute extends Component {
       incorrectAns: 0,
       isCorrect: null, 
       score: '',
-      usrInput: '',
+      userInput: '',
       answer: ''
     }
   }
@@ -50,14 +50,15 @@ handleSubmit = (event) => {
 event.preventDefault();
 //get user input
 if (this.state.isCorrect === null){
-  const usrInput = event.target['learn-usrInput-input'].value;
-  fetch(`${config.API_ENDPOINT}/language/usrInput`, {
+  const userInput = event.target['user-input'].value;
+  console.log(userInput, 'this check')
+  fetch(`${config.API_ENDPOINT}/language/userInput`, {
       method: 'POST',
       headers: {
           'content-type': 'application/json',
           'authorization': `Bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify({usrInput})
+      body: JSON.stringify({userInput})
   }).then(res => {
       if (!res.ok) {
           return res.json().then(e => Promise.reject(e));
@@ -65,9 +66,9 @@ if (this.state.isCorrect === null){
       return res.json();
   })
       .then(res => {
-          console.log(res);
+          console.log(res,'gettingg res in client');
           this.setState({
-              answer: res.answer, usrInput, score: res.score, isCorrect: res.isCorrect,
+              answer: res.answer, userInput, score: res.score, isCorrect: res.isCorrect,
               correctAns: res.wordCorrectCount, incorrectAns: res.wordIncorrectCount, next: res.next
           });
       })
@@ -84,6 +85,7 @@ if (this.state.isCorrect === null){
             if (!res.ok) {
                 return res.json().then(e => Promise.reject(e));
             }
+
             return res.json();
         })
         .then(res => {
@@ -100,11 +102,11 @@ if (this.state.isCorrect === null){
 
 
 handleInput(event) {
-this.setState({usrInput: event.target.value})
+this.setState({userInput: event.target.value})
 }
 
   render() {
-
+    // console.log('here'); 
 
     return (
       <section className='learn'>
@@ -120,21 +122,21 @@ this.setState({usrInput: event.target.value})
         {(this.state.isCorrect !== null) ? 
         <div className='result'>
           <p>
-            Sorry! {this.state.usrInput} is incorrect! {this.state.answer} is the translation of {this.state.current}
+            Sorry! {this.state.userInput} is incorrect! {this.state.answer} is the translation of {this.state.current}
           </p>
         </div> : ''}
         <form className='submit' onSubmit={this.handleSubmit}>
           {(this.state.isCorrect === null) ? <>
           <div className='input'> 
-            <Label htmlFor='usrInput'> 
+            <Label htmlFor='user-input'> 
               What is the translation?:
             </Label> 
             <Input 
-              id='answer-input'
-              name='answer'
+              id='user-input'
+              name='user-input'
               required
               onChange={(event) => this.handleInput(event)} 
-              value={this.state.usrInput}
+              value={this.state.userInput}
             />
           </div> 
           <Button type='submit'>Submit Answer</Button>
